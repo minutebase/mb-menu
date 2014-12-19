@@ -1,3 +1,19 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<h1>MB Menu</h1>
 
-{{outlet}}
+<h2>Single Selection</h2>
+
+<mb-menu items={{items}} selected={{singleSelected}} select="selectSingle" as |item|>
+  {{item}}
+</mb-menu>
+
+<h2>Multiple Selection</h2>
+
+<mb-menu items={{items}} selected={{multiSelected}} multiple="true" select="selectMulti" deselect="deselectMulti" as |item|>
+  {{item}}
+</mb-menu>
+
+<h2>Clear Selection</h2>
+
+<mb-menu items={{items}} selected={{multiSelected}} multiple="true" select="selectMulti" deselect="deselectMulti" clear="clearMulti" as |item|>
+  {{item}}
+</mb-menu>
