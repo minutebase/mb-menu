@@ -14,7 +14,7 @@ Simple menu
 
 ```handlebars
 <mb-menu items={{items}} multiple="true" select="selected" deselected="deselected" as |item|>
-{{item}}
+  {{item}}
 </mb-menu>
 ```
 
@@ -22,7 +22,7 @@ Simple menu
 
 ```handlebars
 <mb-menu items={{items}} multiple="true" select="selected" deselected="deselected" clear="clear" as |item|>
-{{item}}
+  {{item}}
 </mb-menu>
 ```
 
