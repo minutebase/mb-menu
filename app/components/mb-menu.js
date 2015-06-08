@@ -4,13 +4,13 @@ var Wrapper = Ember.Object.extend({
   content: null,
   list:    null,
 
-  isSelected: function() {
+  isSelected: Ember.computed("list.selected.[]", "list.multiple", function() {
     if (this.get("list.multiple")) {
       return (this.get("list.selected") || []).contains(this.get("content"));
     } else {
       return this.get("list.selected") === this.get("content");
     }
-  }.property("list.selected.[]", "list.multiple")
+  })
 });
 
 export default Ember.Component.extend({
@@ -18,13 +18,13 @@ export default Ember.Component.extend({
   classNames: "menu",
   classNameBindings: "typeClass",
 
-  typeClass: function() {
+  typeClass: Ember.computed("multiple", function() {
     if (this.get("multiple")) {
       return "menu--multiple";
     } else {
       return "menu--single";
     }
-  }.property("multiple"),
+  }),
 
   items:     null,
   selected:  null,
@@ -32,14 +32,14 @@ export default Ember.Component.extend({
   multiple:  false,
   object:   null, // optional object to send up in-case there are multiple of these on a page
 
-  wrapped: function() {
+  wrapped: Ember.computed("items.[]", function() {
     return this.get("items").map(item => {
       return Wrapper.create({
         content: item,
         list:    this
       });
     });
-  }.property("items.[]"),
+  }),
 
   actions: {
     select: function(wrapped) {
