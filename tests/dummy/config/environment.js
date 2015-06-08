@@ -8,11 +8,8 @@ module.exports = function(environment) {
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
-        'ember-htmlbars': true,
-        'ember-htmlbars-attribute-syntax': true,
-        'ember-htmlbars-inline-if-helper': true,
-        'ember-htmlbars-component-generation': true,
-        'ember-htmlbars-block-params': true
+        // Here you can enable experimental features on an ember canary build
+        // e.g. 'with-controller': true
       }
     },
 
@@ -24,10 +21,10 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
