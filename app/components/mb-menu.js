@@ -41,6 +41,9 @@ export default Ember.Component.extend({
     });
   }),
 
+  hasSelection: Ember.computed.notEmpty("selected"),
+  showClear: Ember.computed.and("clear", "hasSelection"),
+
   actions: {
     select: function(wrapped) {
       var item = wrapped.get("content");

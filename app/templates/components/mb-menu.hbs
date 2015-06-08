@@ -1,11 +1,11 @@
-{{#if clear}}
-  <li {{action "clear"}} class="menu__header">
-    {{clearText}}
-  </li>
-{{/if}}
-
 {{#each wrapped as |item|}}
   <li {{action "select" item bubbles=false}} class="menu__item {{if item.isSelected "menu__item--selected"}}">
     {{yield item.content item.isSelected}}
   </li>
 {{/each}}
+
+{{#if showClear}}
+  <li {{action "clear"}} class="menu__clear">
+    {{clearText}}
+  </li>
+{{/if}}
