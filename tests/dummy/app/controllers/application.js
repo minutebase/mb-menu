@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  items: "One Two Three".w(),
+  items: ["One", "Two", "Three"],
 
   singleSelected: null,
   multiSelected: [],
@@ -17,10 +17,6 @@ export default Ember.Controller.extend({
 
     deselectMulti: function(item) {
       this.get("multiSelected").removeObject(item);
-    },
-
-    clearMulti: function() {
-      this.get("multiSelected").clear();
     }
   }
 });

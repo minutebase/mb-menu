@@ -2,37 +2,37 @@
 
 Simple menu
 
-## Single Selection
+## Installing
 
-```handlebars
-<mb-menu items={{items}} select="selected" as |item|>
-  {{item}}
-</mb-menu>
+```
+ember install ember-mb-menu
 ```
 
-## Multiple Selection
+## Basic Usage
 
 ```handlebars
-<mb-menu items={{items}} multiple="true" select="selected" deselected="deselected" as |item|>
+{{#mb-menu items=items selected=selected on-select="selected" as |item|}}
   {{item}}
-</mb-menu>
+{{/mb-menu}}
 ```
 
-## Clear Selection
-
-```handlebars
-<mb-menu items={{items}} multiple="true" select="selected" deselected="deselected" clear="clear" as |item|>
-  {{item}}
-</mb-menu>
-```
-
-Pass `clearText` to specify the value of the clear button.
+`selected` can either be a single item or an array for multiple-selection.
 
 ## Actions
 
-* select - sent when item is selected
-* deselect - sent when item is de-selected
-* clear - sent when items are to be cleared
+* `on-select` - sent when item is selected
+* `on-deselect` - sent when item is de-selected
+* `on-toggle` - sent when item is selected or deselected
+
+## Styling
+
+* `class` - the class of the menu (standard Ember)
+* `item-class` - the class for each item
+* `selected-class` - the class to give to selected items
+
+## Event Bubbling
+
+If you want to prevent click events from bubbling, pass `bubbles=false` and they will be swallowed.
 
 # Developing
 

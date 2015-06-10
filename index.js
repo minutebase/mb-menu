@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'mb-menu'
+  name: 'ember-mb-menu'
 };
