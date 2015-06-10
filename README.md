@@ -1,6 +1,6 @@
 # MB-Menu
 
-Simple menu
+Simple menu - [demo](http://minutebase.github.io/mb-menu).
 
 ## Installing
 
