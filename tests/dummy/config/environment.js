@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ember-mb-menu';
+    ENV.baseURL = '/mb-menu';
   }
 
   return ENV;
