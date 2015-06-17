@@ -42,7 +42,7 @@ export default Ember.Component.extend({
   bubbles: true,
 
   wrapped: Ember.computed("items.[]", function() {
-    return Ember.A(this.get("items").map(item => {
+    return Ember.A((this.get("items") || []).map(item => {
       return Wrapper.create({
         content: item,
         list:    this
