@@ -4,19 +4,46 @@ const Wrapper = Ember.Object.extend({
   content: null,
   list:    null,
 
-  isSelected: Ember.computed("list.selected.[]", function() {
-    const selected = this.get("list.selected");
-    const by       = this.get("list.by");
-    const content  = by ? this.get("content").get(by) : this.get("content");
+  unwrappedContent: Ember.computed("content", "list.by", {
+    get() {
+      const content = this.get("content");
+      const by      = this.get("list.by");
 
-    if (Ember.isArray(selected)) {
-      if (by) {
-        return Ember.A(selected).mapBy(by).contains(content);
-      } else {
-        return Ember.A(selected).contains(content);
+      if (!content || !by) {
+        return content;
       }
-    } else {
-      return selected === content;
+
+      return content.get(by);
+    }
+  }),
+
+  unwrappedSelected: Ember.computed("list.by", "list.selected.[]", {
+    get() {
+      const selected = this.get("list.selected");
+      const by       = this.get("list.by");
+
+      if (!selected || !by) {
+        return selected;
+      }
+
+      if (Ember.isArray(selected)) {
+        return Ember.A(selected).mapBy(by);
+      } else {
+        return selected.get(by);
+      }
+    }
+  }),
+
+  isSelected: Ember.computed("unwrappedSelected.[]", {
+    get() {
+      const selected = this.get("unwrappedSelected");
+      const content  = this.get("unwrappedContent");
+
+      if (Ember.isArray(selected)) {
+        return selected.contains(content);
+      } else {
+        return selected === content;
+      }
     }
   })
 });
@@ -41,13 +68,15 @@ export default Ember.Component.extend({
   // TODO - deprecate this when new actions land as it will no longer be needed
   bubbles: true,
 
-  wrapped: Ember.computed("items.[]", function() {
-    return Ember.A((this.get("items") || []).map(item => {
-      return Wrapper.create({
-        content: item,
-        list:    this
-      });
-    }));
+  wrapped: Ember.computed("items.[]", {
+    get() {
+      return Ember.A((this.get("items") || []).map(item => {
+        return Wrapper.create({
+          content: item,
+          list:    this
+        });
+      }));
+    }
   }),
 
   clicked: Ember.on("click", function(e) {
@@ -59,7 +88,7 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    select: function(wrapped) {
+    select(wrapped) {
       const item   = wrapped.get("content");
       const object = this.get("object");
 
